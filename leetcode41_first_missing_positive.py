@@ -1,3 +1,4 @@
+# SOLUTION LOUIS
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         mx, mn = nums[0], nums[0]
@@ -130,7 +131,7 @@ class Solution:
         
         # dans les deux cas on n'encode que les instances dans le tableau <= au nombre d'éléments strictement positifs
 
-### DERNIERE PROPOSITION SO FAR
+### DERNIÈRE PROPOSITION SO FAR
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         if 1 not in nums:
