@@ -64,6 +64,44 @@ fn volume(h: Vec<i32>) -> i32 {
     }
 
 
+
+
+
+// NOUVELLE VERSION, BIEN MIEUX OPTIMISÉE, EN PARADIGME OBJET POUR LEETCODE
+/* impl Solution {
+    pub fn trap(h: Vec<i32>) -> i32 {
+        let n:usize = h.len();
+        
+        let mut capacity_t = 0;
+
+        if n <= 2  {
+            capacity_t = 0;
+        }
+        
+        else {
+            // characterization of the histogram's extrema
+            let mut max_ant:Vec<i32> = vec![0;n]; // anterior max elevation
+            let mut max_ult:Vec<i32> = vec![0;n]; // ulterior max elevation
+            
+            max_ant[0]   = h[0];   // max {h[0]}   = h[0]
+            max_ult[n-1] = h[n-1]; // max {h[n-1]} = h[n-1] 
+
+            for i in 1..n {
+                max_ant[i]     = std::cmp::max(max_ant[i-1], h[i]);
+                max_ult[n-i-1] = std::cmp::max(max_ult[n-i], h[n-i-1]);
+                //              max juste après ----------^^^         ^^^^^--- hauteur courante
+            }
+
+            
+            for i in 0..n {
+                capacity_t += std::cmp::min(max_ant[i], max_ult[i]) - h[i];
+            }
+        }
+        return capacity_t;
+    }
+} */
+
+
 /* fn maximum(r:&Vec<i32>) -> i32 {
     let mut m = r[0];
     for i in 1..r.len() {
@@ -85,7 +123,7 @@ fn minimum(r:&Vec<i32>) -> i32 {
 } */
 
 /* 
-// FORMATAGE LEETCODE
+// FORMATAGE LEETCODE & NOUVELLE IMPLÉMENTATION BIEN MIEUX OPTIMISÉE
 impl Solution {
     pub fn trap(h: Vec<i32>) -> i32 {
         let n:usize = h.len();
@@ -163,41 +201,5 @@ impl Solution {
             };
         }
         return m;
-    }
-} */
-
-
-
-// NOUVELLE VERSION, BIEN MIEUX OPTIMISÉE
-/* impl Solution {
-    pub fn trap(h: Vec<i32>) -> i32 {
-        let n:usize = h.len();
-        
-        let mut capacity_t = 0;
-
-        if n <= 2  {
-            capacity_t = 0;
-        }
-        
-        else {
-            // characterization of the histogram's extrema
-            let mut max_ant:Vec<i32> = vec![0;n]; // anterior max elevation
-            let mut max_ult:Vec<i32> = vec![0;n]; // ulterior max elevation
-            
-            max_ant[0]   = h[0];   // max {h[0]}   = h[0]
-            max_ult[n-1] = h[n-1]; // max {h[n-1]} = h[n-1] 
-
-            for i in 1..n {
-                max_ant[i]     = std::cmp::max(max_ant[i-1], h[i]);
-                max_ult[n-i-1] = std::cmp::max(max_ult[n-i], h[n-i-1]);
-                //              max juste après ----------^^^         ^^^^^--- hauteur courante
-            }
-
-            
-            for i in 0..n {
-                capacity_t += std::cmp::min(max_ant[i], max_ult[i]) - h[i];
-            }
-        }
-        return capacity_t;
     }
 } */
